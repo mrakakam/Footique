@@ -1,108 +1,156 @@
 import { useState } from "react"
 import Heroimg1 from "../assets/images/image-product-1.jpg"
-import imageproduct1 from "../assets/images/image-product-1-thumbnail.jpg"
 import Heroimg2 from "../assets/images/image-product-2.jpg"
-import imageproduct2 from "../assets/images/image-product-2-thumbnail.jpg"
 import Heroimg3 from "../assets/images/image-product-3.jpg"
-import imageproduct3 from "../assets/images/image-product-3-thumbnail.jpg"
 import Heroimg4 from "../assets/images/image-product-4.jpg"
+
+import imageproduct1 from "../assets/images/image-product-1-thumbnail.jpg"
+import imageproduct2 from "../assets/images/image-product-2-thumbnail.jpg"
+import imageproduct3 from "../assets/images/image-product-3-thumbnail.jpg"
 import imageproduct4 from "../assets/images/image-product-4-thumbnail.jpg"
+
 import plusiconimg from "../assets/images/icon-plus.svg"
 import minusiconimg from "../assets/images/icon-minus.svg"
 import carticonimg from "../assets/images/icon-cart.svg"
 
-const products = [
-  { hero: Heroimg1, thumb: imageproduct1 },
-  { hero: Heroimg2, thumb: imageproduct2 },
-  { hero: Heroimg3, thumb: imageproduct3 },
-  { hero: Heroimg4, thumb: imageproduct4 },
-]
+const images = [Heroimg1, Heroimg2, Heroimg3, Heroimg4]
 
 export const Hero = () => {
-  const [currentIndex, setCurrentIndex] = useState(0)
+  const [isOpen, setIsOpen] = useState(false)
+  const [activeIndex, setActiveIndex] = useState(0)
+
+  const openModal = (index) => {
+    setActiveIndex(index)
+    setIsOpen(true)
+  }
 
   const nextImage = () => {
-    setCurrentIndex((prev) => (prev + 1) % products.length)
+    setActiveIndex((prev) => (prev + 1) % images.length)
+  }
+
+  const prevImage = () => {
+    setActiveIndex((prev) =>
+      prev === 0 ? images.length - 1 : prev - 1
+    )
   }
 
   return (
-    <section className="flex flex-row gap-20 px-24 py-16">
-      {/* FIRST MAIN DIV */}
-      <div className="flex flex-col gap-6">
-        <div className="relative">
-          <img
-            src={products[currentIndex].hero}
-            alt=""
-            className="rounded-xl w-[420px]"
-          />
+    <>
+      {/* HERO SECTION */}
+      <section className="flex flex-row gap-60 px-24 py-16">
+        {/* LEFT */}
+        <div className="flex flex-col gap-6">
+          <img src={Heroimg1} alt="" className="w-[420px] rounded-xl" />
 
-          {/* Arrow button */}
-          <button
-            onClick={nextImage}
-            className="absolute right-4 top-1/2 -translate-y-1/2 bg-white p-3 rounded-full shadow"
-          >
-            <i className="bi bi-chevron-right text-xl"></i>
-          </button>
-        </div>
-
-        {/* Thumbnails */}
-        <div className="flex gap-4">
-          {products.map((item, index) => (
+          {/* THUMBNAILS */}
+          <div className="flex gap-4">
             <img
-              key={index}
-              src={item.thumb}
-              alt=""
-              onClick={() => setCurrentIndex(index)}
-              className={`w-20 rounded-lg cursor-pointer border-2 ${
-                currentIndex === index
-                  ? "border-orange-500 opacity-70"
-                  : "border-transparent"
-              }`}
+              src={imageproduct1}
+              className="w-20 rounded-lg cursor-pointer"
+              onClick={() => openModal(0)}
             />
-          ))}
-        </div>
-      </div>
-
-      {/* SECOND MAIN DIV */}
-      <div className="flex flex-col items-start gap-6 max-w-md">
-        <h3 className="text-orange-500 font-bold tracking-widest text-sm">
-          SNEAKERS COMPANY
-        </h3>
-
-        <h1 className="text-4xl font-bold">
-          Fall Limited Edition Sneakers
-        </h1>
-
-        <p className="text-gray-500 leading-relaxed">
-          These low-profile sneakers are your perfect casual wear companion.
-          Featuring a durable rubber outer sole, they'll withstand everything
-          the weather can offer.
-        </p>
-
-        {/* Price row */}
-        <div className="flex flex-row items-center gap-4">
-          <h2 className="text-3xl font-bold">$125.00</h2>
-          <span className="bg-black text-white px-3 py-1 rounded-md font-bold">
-            50%
-          </span>
+            <img
+              src={imageproduct2}
+              className="w-20 rounded-lg cursor-pointer"
+              onClick={() => openModal(1)}
+            />
+            <img
+              src={imageproduct3}
+              className="w-20 rounded-lg cursor-pointer"
+              onClick={() => openModal(2)}
+            />
+            <img
+              src={imageproduct4}
+              className="w-20 rounded-lg cursor-pointer"
+              onClick={() => openModal(3)}
+            />
+          </div>
         </div>
 
-        <h3 className="text-gray-400 line-through">$250.00</h3>
+        {/* RIGHT */}
+        <div className="flex flex-col items-start gap-12 max-w-md">
+          <h3 className="text-gray-700 font-bold tracking-widest text-sm">
+            SNEAKERS COMPANY
+          </h3>
 
-        {/* Quantity + Cart */}
-        <div className="flex gap-4 w-full">
-          <div className="flex items-center justify-between bg-gray-100 px-4 py-3 rounded-lg w-36">
-            <img src={minusiconimg} alt="" className="cursor-pointer" />
-            <span className="font-bold">0</span>
-            <img src={plusiconimg} alt="" className="cursor-pointer" />
+          <h1 className="text-4xl font-bold">
+            Fall Limited Edition Sneakers
+          </h1>
+
+          <p className="text-gray-500">
+            These low-profile sneakers are your perfect casual wear companion.
+            Featuring a durable rubber outer sole.
+          </p>
+
+          <div className="flex items-center gap-4">
+            <h2 className="text-3xl font-bold">$125.00</h2>
+            <span className="bg-black text-white px-3 py-1 rounded-md font-bold">
+              50%
+            </span>
           </div>
 
-          <button className="flex items-center justify-center gap-3 bg-orange-500 text-black font-bold px-6 py-3 rounded-lg w-full hover:opacity-90">
-            <img src={carticonimg} alt="" />
-            Add to cart
-          </button>
+          <h3 className="text-gray-400 line-through">$250.00</h3>
+
+          <div className="flex gap-4 w-full">
+            <div className="flex items-center justify-between bg-gray-100 px-4 py-3 rounded-lg w-36">
+              <img src={minusiconimg} />
+              <span className="font-bold">0</span>
+              <img src={plusiconimg} />
+            </div>
+
+            <button className="flex items-center justify-center gap-3 bg-orange-500 text-black font-bold px-6 py-3 rounded-lg w-full">
+              <img src={carticonimg} />
+              Add to cart
+            </button>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      {/* MODAL */}
+      {isOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center">
+          {/* BLURRED BACKGROUND */}
+          <div
+            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+            onClick={() => setIsOpen(false)}
+          />
+
+          {/* MODAL CONTENT */}
+          <div className="relative z-50">
+            {/* CLOSE ICON */}
+            <button
+              onClick={() => setIsOpen(false)}
+              className="absolute -top-10 right-0 text-white text-3xl"
+            >
+              <i className=" text-amber-600 bi bi-x-lg"></i>
+            </button>
+
+            {/* IMAGE */}
+            <div className="relative">
+              <img
+                src={images[activeIndex]}
+                className="w-[480px] rounded-xl"
+              />
+
+              {/* LEFT ARROW */}
+              <button
+                onClick={prevImage}
+                className="absolute left-4 top-1/2 -translate-y-1/2 bg-white p-3 rounded-full"
+              >
+                <i className="bi bi-chevron-left text-xl"></i>
+              </button>
+
+              {/* RIGHT ARROW */}
+              <button
+                onClick={nextImage}
+                className="absolute right-4 top-1/2 -translate-y-1/2 bg-white p-3 rounded-full"
+              >
+                <i className="bi bi-chevron-right text-xl"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   )
 }
