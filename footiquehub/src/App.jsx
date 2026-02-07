@@ -2,6 +2,7 @@
 import { Navbar } from './components/Navbar'
 import { Hero } from './components/Hero'
 import { Testimonial } from './components/Testimonial'
+import { Footer } from './components/Footer'
 
 function App() {
   
@@ -11,6 +12,7 @@ function App() {
       <Navbar/>
       <Hero/>
       <Testimonial/>
+      <Footer/>
     </>
   )
 }
