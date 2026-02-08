@@ -1,18 +1,33 @@
 export const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-white py-12 px-8">
-      <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between gap-8">
-        {/* Brand */}
-        <div>
+    <footer className="bg-gray-900 text-white px-6 py-12 md:px-8">
+      <div
+        className="
+          max-w-6xl mx-auto
+          flex flex-col
+          gap-12
+          md:flex-row md:justify-between md:gap-8
+        "
+      >
+        {/* BRAND */}
+        <div className="text-center md:text-left">
           <h3 className="text-2xl font-bold mb-4">sneakers</h3>
-          <p className="text-gray-400 max-w-xs">
-            Your one-stop shop for stylish and comfortable sneakers. Quality and style you can trust.
+          <p className="text-gray-400 max-w-sm mx-auto md:mx-0">
+            Your one-stop shop for stylish and comfortable sneakers.
+            Quality and style you can trust.
           </p>
         </div>
 
-        {/* Navigation Links */}
-        <div className="flex flex-col md:flex-row gap-12">
-          <ul className="flex flex-col gap-2">
+        {/* LINKS */}
+        <div
+          className="
+            flex flex-col
+            gap-10
+            text-center
+            md:flex-row md:gap-12 md:text-left
+          "
+        >
+          <ul className="flex flex-col gap-3">
             <li className="hover:text-orange-500 cursor-pointer">Collections</li>
             <li className="hover:text-orange-500 cursor-pointer">Men</li>
             <li className="hover:text-orange-500 cursor-pointer">Women</li>
@@ -20,7 +35,7 @@ export const Footer = () => {
             <li className="hover:text-orange-500 cursor-pointer">Contact</li>
           </ul>
 
-          <ul className="flex flex-col gap-2">
+          <ul className="flex flex-col gap-3">
             <li className="hover:text-orange-500 cursor-pointer">FAQs</li>
             <li className="hover:text-orange-500 cursor-pointer">Support</li>
             <li className="hover:text-orange-500 cursor-pointer">Privacy Policy</li>
@@ -28,10 +43,10 @@ export const Footer = () => {
           </ul>
         </div>
 
-        {/* Social / contact */}
-        <div className="flex flex-col gap-4">
-          <h4 className="font-bold">Follow Us</h4>
-          <div className="flex gap-4 text-gray-400">
+        {/* SOCIAL */}
+        <div className="text-center md:text-left">
+          <h4 className="font-bold mb-4">Follow Us</h4>
+          <div className="flex justify-center md:justify-start gap-6 text-gray-400">
             <span className="hover:text-orange-500 cursor-pointer">Facebook</span>
             <span className="hover:text-orange-500 cursor-pointer">Twitter</span>
             <span className="hover:text-orange-500 cursor-pointer">Instagram</span>
@@ -39,10 +54,10 @@ export const Footer = () => {
         </div>
       </div>
 
-      {/* Copyright */}
+      {/* COPYRIGHT */}
       <div className="text-gray-500 text-sm text-center mt-12">
         &copy; {new Date().getFullYear()} Sneakers. All rights reserved.
       </div>
     </footer>
-  )
-}
+  );
+};
