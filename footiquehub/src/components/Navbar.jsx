@@ -1,9 +1,13 @@
+import { useState } from "react";
 import imageavatar from "../assets/images/image-avatar.png";
 import cartimg from "../assets/images/icon-cart.svg";
+import { Cart } from "./Cart";
 
 export const Navbar = ({ cartCount }) => {
+  const [showCart, setShowCart] = useState(false);
+
   return (
-    <nav className="flex items-center justify-between px-10 py-4 border-b border-gray-200">
+    <nav className="relative flex items-center justify-between px-10 py-4 border-b border-gray-200">
 
       <h2 className="text-2xl font-extrabold">sneakers</h2>
 
@@ -28,9 +32,17 @@ export const Navbar = ({ cartCount }) => {
 
       {/* CART + AVATAR */}
       <div className="flex items-center gap-6">
-        <div className="relative">
+
+        {/* CART WRAPPER (IMPORTANT FIX) */}
+        <div
+          className="relative"
+          onMouseEnter={() => setShowCart(true)}
+          onMouseLeave={() => setShowCart(false)}
+        >
+          {/* CART ICON */}
           <img src={cartimg} className="w-5 cursor-pointer" />
 
+          {/* ORANGE COUNT */}
           {cartCount > 0 && (
             <span
               className="absolute -top-2 -right-3
@@ -40,8 +52,12 @@ export const Navbar = ({ cartCount }) => {
               {cartCount}
             </span>
           )}
+
+          {/* CART DROPDOWN */}
+          {showCart && <Cart cartCount={cartCount} />}
         </div>
 
+        {/* AVATAR */}
         <img
           src={imageavatar}
           className="w-9 rounded-full cursor-pointer
