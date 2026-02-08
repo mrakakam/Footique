@@ -38,17 +38,15 @@ export const Hero = ({ setCartCount }) => {
 
   return (
     <>
-      {/* HERO SECTION */}
+      {/* HERO */}
       <section className="flex gap-60 px-24 py-16">
         {/* LEFT */}
         <div className="flex flex-col gap-6">
           <img
             src={images[0]}
-            alt="product"
             className="w-[420px] rounded-xl"
           />
 
-          {/* THUMBNAILS */}
           <div className="flex gap-4">
             {[imageproduct1, imageproduct2, imageproduct3, imageproduct4].map(
               (img, index) => (
@@ -65,7 +63,7 @@ export const Hero = ({ setCartCount }) => {
         </div>
 
         {/* RIGHT */}
-        <div className="flex flex-col items-start gap-12 max-w-md">
+        <div className="flex flex-col items-start gap-10 max-w-md">
           <h3 className="text-gray-700 font-bold tracking-widest text-sm">
             SNEAKERS COMPANY
           </h3>
@@ -88,18 +86,14 @@ export const Hero = ({ setCartCount }) => {
 
           <h3 className="text-gray-400 line-through">$250.00</h3>
 
-          {/* CART ACTIONS */}
           <div className="flex gap-4 w-full">
-            {/* PLUS / MINUS */}
             <div className="flex items-center justify-between bg-gray-100 px-4 py-3 rounded-lg w-36">
               <img
                 src={minusiconimg}
                 className="cursor-pointer"
                 onClick={() => setQuantity((q) => Math.max(0, q - 1))}
               />
-
               <span className="font-bold">{quantity}</span>
-
               <img
                 src={plusiconimg}
                 className="cursor-pointer"
@@ -107,7 +101,6 @@ export const Hero = ({ setCartCount }) => {
               />
             </div>
 
-            {/* ADD TO CART */}
             <button
               onClick={() => {
                 if (quantity > 0) {
@@ -118,7 +111,7 @@ export const Hero = ({ setCartCount }) => {
               className="flex items-center justify-center gap-3
                          bg-orange-500 text-black font-bold
                          px-6 py-3 rounded-lg w-full
-                         hover:bg-orange-600 transition"
+                         hover:bg-orange-600"
             >
               <img src={carticonimg} />
               Add to cart
@@ -130,30 +123,25 @@ export const Hero = ({ setCartCount }) => {
       {/* MODAL */}
       {isOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center">
-          {/* BACKDROP */}
           <div
             className="absolute inset-0 bg-black/60 backdrop-blur-sm"
             onClick={() => setIsOpen(false)}
           />
 
-          {/* MODAL CONTENT */}
           <div className="relative z-50">
-            {/* CLOSE */}
             <button
               onClick={() => setIsOpen(false)}
-              className="absolute -top-10 right-0 text-amber-600 text-3xl"
+              className="absolute -top-10 right-0 text-orange-500 text-3xl"
             >
               ✕
             </button>
 
-            {/* IMAGE */}
             <div className="relative">
               <img
                 src={images[activeIndex]}
                 className="w-[480px] rounded-xl"
               />
 
-              {/* LEFT ARROW */}
               <button
                 onClick={prevImage}
                 className="absolute left-4 top-1/2 -translate-y-1/2
@@ -162,7 +150,6 @@ export const Hero = ({ setCartCount }) => {
                 ‹
               </button>
 
-              {/* RIGHT ARROW */}
               <button
                 onClick={nextImage}
                 className="absolute right-4 top-1/2 -translate-y-1/2
